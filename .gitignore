@@ -1,7 +1,12 @@
 _logs_/*
 !_logs_/.gitkeep
-static_dist/
-_static_dist_/
+
+_static_dist_/*
+!_static_dist_/.gitkeep
+
+
+
+
 srs_doc.pdf
 ~$*
 .env
