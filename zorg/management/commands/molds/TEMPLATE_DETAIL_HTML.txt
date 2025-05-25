@@ -1,0 +1,54 @@
+{% extends "zorg/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_script %}
+{% endblock page_script %}
+
+{% block page_style %}
+{% endblock page_style %}
+
+{% block browser_title %}
+  ___VERBOSE_NAME___
+{% endblock browser_title %}
+
+{% block page_header %}
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4 h3">___VERBOSE_NAME___ Details</h1>
+    <h1 class="my-4 h3">
+      <a class="btn btn-info" href="{% url "___APP_NAME___:create" %}">
+        <i class="bi bi-plus-square"></i>&nbsp;Create
+      </a>
+    </h1>
+  </div>
+{% endblock page_header %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-md-12 col-xl-8">
+      <div class="card">
+        <div class="card-header">___VERBOSE_NAME___: {{ object }}</div>
+        <div class="card-body">
+          <table class="table table-sm table-hover">
+            <tr>
+              <th>Name</th>
+              <td>{{ object.name }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer text-end">
+          <div class="btn-group" role="group">
+            <a class="btn btn-info" href="{% url "___APP_NAME___:update" object.id %}">
+              <i class="bi bi-pencil-square"></i>&nbsp;Update
+            </a>
+            <a class="btn btn-danger" href="{% url "___APP_NAME___:delete" object.id %}">
+              <i class="bi bi-trash"></i>&nbsp;Delete
+            </a>
+            <a class="btn btn-primary" href="{% url "___APP_NAME___:list" %}">
+              <i class="bi bi-arrow-left"></i>&nbsp;Back
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}

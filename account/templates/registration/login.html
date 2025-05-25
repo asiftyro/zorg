@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "zorg/header.html" %}
+    <script async defer type="module" src="{% static "js/altcha.min.js" %}"> </script>
+    <style>
+        :root {
+            --altcha-border-width: 0px;
+            --altcha-border-radius: 3px;
+            --altcha-color-base: #ffffff;
+            --altcha-color-border: #a0a0a0;
+            --altcha-color-text: currentColor;
+            --altcha-color-border-focus: currentColor;
+            --altcha-color-error-text: #f23939;
+            --altcha-color-footer-bg: #ffffff;
+            --altcha-max-width: 100%;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <div class="card p-4" style="width: 350px;">
+        <div class="login-form-icon">
+          <img src="{% static 'img/android-chrome-512x512.png' %}" />
+        </div>
+        <h1 class="h2 text-center mt-5 mb-3">Login</h1>
+        {% include "zorg/flash_alert.html" %}
+        {% if form.errors %}
+          <div class="alert alert-dismissible fade show alert-danger">
+            Login Failed. Check credentials and Retry.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="username" class="form-control" placeholder="Username" required />
+          </div>
+          <div class="mb-3">
+            <input type="password" name="password" class="form-control"  placeholder="Password" required />
+          </div>
+          <div class="mb-3">
+            <altcha-widget challengeurl="{% url 'account:captcha_challange' %}"></altcha-widget>
+          </div>
+          <div class="mb-1 text-center">
+            <button type="submit" class="btn btn-dark">
+              <b>LOG IN</b>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"> </script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{% load custom_tags %}
+{% if perms.account %}
+{% side_nav_heading heading="Account" %}
+{% side_nav_drop_down id="account-nQr6Hg99T8KOFETmMt2c2A" root_id="side-nav-root" drop_down_label="Account" drop_down_icon="record-circle" %}
+{% if perms.account.view_account %}
+{% side_nav_link url="account:list" icon="filter-square" label="List Account" %}
+{% endif %}
+{% if perms.account.add_account %}
+{% side_nav_link url="account:create" icon="plus-square" label="Create Account" %}
+{% endif %}
+{% end_side_nav_drop_down %}
+{% endif %}

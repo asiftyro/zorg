@@ -1,0 +1,19 @@
+{% load custom_tags %}
+
+<div class="bws-side-nav-wrapper">
+  <nav class="bws-sidenav accordion bws-sidenav-dark" id="side-nav-root">
+    <div class="bws-sidenav-menu">
+      <div class="nav">{% include "side_nav_urls.html" %}</div>
+    </div>
+    <div class="bws-sidenav-footer">
+      {% if user.is_authenticated %}
+        <div class="small">Logged in as:</div>
+        {{ user.username }}
+      {% else %}
+        <div class="text-center">
+          <a class="btn btn-sm btn-outline-primary" href="{% url 'account:login' %}" title="Sign In">Sign In</a>
+        </div>
+      {% endif %}
+    </div>
+  </nav>
+</div>

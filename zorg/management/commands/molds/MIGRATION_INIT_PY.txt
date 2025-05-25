@@ -1,0 +1,1 @@
+"""___APP_DIR_NAME___/migrations/__init__.py"""

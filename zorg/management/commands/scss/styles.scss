@@ -1,0 +1,17 @@
+/***
+* Customize - 
+    zorg/_variables.scss
+    zorg/_zorg.scss
+* For font setup:
+    zorg/management/commands/scss/bootswatch/_bootswatch.scss $web-font-path
+    zorg/management/commands/scss/bootswatch/_variables.scss $font-family-sans-serif
+**/
+
+@import "bootswatch/variables";                         //  Bootswatch
+@import "zorg/variables";                               //  Customization variables
+@import "bootstrap/bootstrap";                          //  Bootstrap
+@import "bootswatch/bootswatch";                        //  Bootswatch
+@import "use-bootstrap-select/use-bootstrap-select";    //  Bootswatch
+@import "bootstrap-icons/bootstrap-icons";              //  Bootstrap icons
+@import "zorg/zorg";                                    //  Customized styles
+

@@ -1,0 +1,47 @@
+{% extends "zorg/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_script %}
+{% endblock page_script %}
+
+{% block page_style %}
+{% endblock page_style %}
+
+{% block browser_title %}
+  ___VERBOSE_NAME___
+{% endblock browser_title %}
+
+{% block page_header %}
+  <h1 class="my-4 h3">
+    Delete ___VERBOSE_NAME___
+  </h1>
+{% endblock page_header %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-md-12 col-xl-8">
+      <form method="post" class="card">
+        <div class="card-header">
+          ___VERBOSE_NAME___: {{ object }}
+        </div>
+        <div class="card-body">
+          {% csrf_token %}
+          <p>
+            Are you sure you want to <span class="text-danger">delete</span> <b>"{{ object }}"</b>?
+          </p>
+        </div>
+        <div class="card-footer text-end">
+          <div class="btn-group btn-group" role="group">
+            <button type="submit" class="btn btn-danger">
+              <i class="bi bi-trash"></i>&nbsp;Delete
+            </button>
+            <a class="btn btn-primary" href="{% url "___APP_NAME___:detail" object.id %}">
+              <i class="bi bi-arrow-left"></i>&nbsp;Cancel
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock page_content %}

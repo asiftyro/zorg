@@ -1,0 +1,30 @@
+"""___APP_DIR_NAME___/urls.py"""
+
+from django.urls import path
+from . import views
+
+app_name = "___APP_NAME___"
+
+urlpatterns = [
+    path("", views.___MODEL_NAME___ListView.as_view(), name="list"),
+    path(
+        "<int:pk>/",
+        views.___MODEL_NAME___DetailView.as_view(),
+        name="detail",
+    ),
+    path(
+        "create/",
+        views.___MODEL_NAME___CreateView.as_view(),
+        name="create",
+    ),
+    path(
+        "update/<int:pk>/",
+        views.___MODEL_NAME___UpdateView.as_view(),
+        name="update",
+    ),
+    path(
+        "delete/<int:pk>/",
+        views.___MODEL_NAME___DeleteView.as_view(),
+        name="delete",
+    ),
+]

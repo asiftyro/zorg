@@ -1,0 +1,23 @@
+# Set to True for development, False for production
+DEBUG=
+# This is a secret key used for cryptographic signing. It should be kept secret in production.
+SECRET_KEY=
+# This is a secret key used for HMAC signing. It should be kept secret in production.
+ALTCHA_HMAC_KEY=
+# Without schema, i.e. http or https
+ALLOWED_HOSTS=
+# With schema, i.e. http or https
+CSRF_TRUSTED_ORIGINS=
+MY_CNF_PATH=
+# Log dir
+LOG_DIR=
+# Timezon
+TIME_ZONE=
+# Celery
+CELERY_BROKER_URL=
+# Email
+EMAIL_HOST=
+EMAIL_USE_TLS=
+EMAIL_PORT=
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=

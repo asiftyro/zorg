@@ -1,0 +1,55 @@
+{% extends "zorg/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_script %}
+{% endblock page_script %}
+
+{% block page_style %}
+{% endblock page_style %}
+
+{% block browser_title %}
+  Account
+{% endblock browser_title %}
+
+{% block page_header %}
+  <h1 class="my-4 h3">
+    {% if object.id %}
+      Update
+    {% else %}
+      Create
+    {% endif %}
+    Account
+  </h1>
+{% endblock page_header %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-md-12 col-xl-8">
+      <form method="post" class="card">
+        <div class="card-header">
+          Account: {{ object }}
+        </div>
+        <div class="card-body">
+          {% csrf_token %}
+          {{ form | crispy }}
+        </div>
+        <div class="card-footer text-end">
+          <div class="btn-group btn-group" role="group">
+            <button type="submit" class="btn btn-success">
+              <i class="bi bi-floppy"></i>&nbsp;Save
+            </button>
+            {% if object.id %}
+              <a class="btn btn-primary" href="{% url "account:detail" object.id %}">
+                <i class="bi bi-arrow-left"></i>&nbsp;Cancel
+              </a>
+            {% else %}
+              <a class="btn btn-primary" href="{% url "account:list" %}">
+                <i class="bi bi-arrow-left"></i>&nbsp;Cancel
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock page_content %}

@@ -1,0 +1,5 @@
+"""___APP_DIR_NAME___/tests.py"""
+
+from django.test import TestCase
+
+# Create your tests here.

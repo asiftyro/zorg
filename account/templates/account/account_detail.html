@@ -1,0 +1,77 @@
+{% extends "zorg/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_script %}
+{% endblock page_script %}
+
+{% block page_style %}
+{% endblock page_style %}
+
+{% block browser_title %}
+  Account
+{% endblock browser_title %}
+
+{% block page_header %}
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4 h3">Account Details</h1>
+    <h1 class="my-4 h3">
+      <a class="btn btn-info" href="{% url "account:create" %}">
+        <i class="bi bi-plus-square"></i>&nbsp;Create
+      </a>
+    </h1>
+  </div>
+{% endblock page_header %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-md-12 col-xl-8">
+      <div class="card">
+        <div class="card-header">Account: {{ object }}</div>
+        <div class="card-body">
+          <table class="table table-sm table-hover">
+            <tr>
+              <th>User Name</th>
+              <td>{{ object.username }}</td>
+            </tr>
+            <tr>
+              <th>Active?</th>
+              <td>{{ object.is_active }}</td>
+            </tr>
+            <tr>
+              <th>Full Name</th>
+              <td>{{ object.full_name }}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{{ object.email }}</td>
+            </tr>
+            <tr>
+              <th>Phone</th>
+              <td>{{ object.phone }}</td>
+            </tr>
+            <tr>
+              <th>Designation</th>
+              <td>{{ object.designation }}</td>
+            </tr>
+            <tr>
+              <th>User Groups</th>
+              <td>
+                {% for gr in object.groups.all %}{{ gr }}&nbsp;{% endfor %}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="card-footer text-end">
+          <div class="btn-group" role="group">
+            <a class="btn btn-info" href="{% url "account:update" object.id %}">
+              <i class="bi bi-pencil-square"></i>&nbsp;Update
+            </a>
+            <a class="btn btn-primary" href="{% url "account:list" %}">
+              <i class="bi bi-arrow-left"></i>&nbsp;Back
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}

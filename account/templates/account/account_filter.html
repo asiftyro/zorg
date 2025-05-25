@@ -1,0 +1,65 @@
+{% extends "zorg/base.html" %}
+{% load render_table from django_tables2 %}
+{% load widget_tweaks %}
+
+{% block browser_title %}
+  Account
+{% endblock browser_title %}
+
+{% block page_header %}
+  <div class="d-flex justify-content-between">
+    <h1 class="my-4 h3">
+      Account List
+    </h1>
+    <h1 class="my-4 h3">
+      <a class="btn btn-info" href="{% url "account:create" %}">
+        <i class="bi bi-plus-square"></i>&nbsp;Create
+      </a>
+    </h1>
+  </div>
+{% endblock page_header %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          Search
+        </div>
+        <div class="card-body">
+          <form class="row">
+            {% for filter_field in filter.form %}
+              <div class="col-md-4">
+                {{ filter_field.label }}
+                <div class="display_flex">
+                  {{ filter_field|add_class:"form-control form-control-sm" }}
+                </div>
+              </div>
+            {% endfor %}
+            <div class="col-sm-12 text-start mt-3">
+              <button type="submit" class="btn btn-primary btn-sm">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          List
+        </div>
+        <div class="card-body">
+          {% render_table table %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock page_content %}
+{% block page_script %}
+{% endblock page_script %}
+{% block page_style %}
+{% endblock page_style %}

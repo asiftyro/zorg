@@ -1,0 +1,12 @@
+"""___APP_DIR_NAME___/apps.py"""
+
+from django.apps import AppConfig
+
+
+class ___MODEL_NAME___Config(AppConfig):
+    """___APP_NAME___ config"""
+
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "___APP_NAME___"
+    label = "___APP_LABEL___"
+    verbose_name = "___VERBOSE_NAME___"

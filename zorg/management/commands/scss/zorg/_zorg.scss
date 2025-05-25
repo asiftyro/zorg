@@ -1,0 +1,403 @@
+html,
+body {
+  height: 100%;
+  .bws-top-nav-wrapper {
+    @extend .fixed-top;
+    z-index: $zindex-topnav;
+  }
+
+  .bws-main-wrapper {
+    .bws-side-nav-wrapper {
+      @extend .fixed-top;
+      width: $sidenav-base-width;
+      height: 100vh;
+      z-index: $zindex-sidenav;
+      .bws-sidenav {
+        padding-top: $topnav-base-height;
+
+        .bws-sidenav-menu {
+          overflow-y: auto;
+        }
+      }
+    }
+
+    .bws-content-wrapper {
+      padding-left: $sidenav-base-width;
+      top: $topnav-base-height;
+    }
+  }
+}
+
+//
+// Authentication layout
+//
+
+#layoutAuthentication {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  #layoutAuthentication_content {
+    min-width: 0;
+    flex-grow: 1;
+  }
+
+  #layoutAuthentication_footer {
+    min-width: 0;
+  }
+}
+
+//
+// Default dashboard layout
+//
+
+// Default behavior for the sidenav layout
+// The default positioning for the sidenav is a static position
+
+.bws-main-wrapper {
+  display: flex;
+
+  // Wraps the .bws-sidenav element and sets the size
+  .bws-side-nav-wrapper {
+    flex-basis: $sidenav-base-width;
+    flex-shrink: 0;
+    transition: transform 0.15s ease-in-out;
+    z-index: $zindex-sidenav;
+    // Mobile first transform - by default the sidenav will be moved off-canvas
+    transform: translateX(-$sidenav-base-width);
+  }
+
+  // Wraps the content when using the sidenav layout
+  .bws-content-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    flex-grow: 1;
+    min-height: calc(100vh - #{$topnav-base-height});
+    margin-left: -$sidenav-base-width;
+  }
+}
+
+// Default behavior for the static sidenav collapse
+.bws-sidenav-toggled {
+  .bws-main-wrapper {
+    .bws-side-nav-wrapper {
+      transform: translateX(0);
+    }
+
+    .bws-content-wrapper {
+      &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $black;
+        z-index: $zindex-content;
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in-out;
+      }
+    }
+  }
+}
+
+// Responsive styling for the sidenav layout
+@include media-breakpoint-up(lg) {
+  .bws-main-wrapper {
+    .bws-side-nav-wrapper {
+      transform: translateX(0);
+    }
+
+    .bws-content-wrapper {
+      margin-left: 0;
+      transition: margin 0.15s ease-in-out;
+    }
+  }
+
+  // Behavior for the sidenav collapse on screens larger than the med breakpoint
+  .bws-sidenav-toggled {
+    .bws-main-wrapper {
+      .bws-side-nav-wrapper {
+        transform: translateX(-$sidenav-base-width);
+      }
+
+      .bws-content-wrapper {
+        margin-left: -$sidenav-base-width;
+
+        // Removes the sidenav overlay on screens larger than the med breakpoint
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+//
+// Error page layout
+//
+
+#layoutError {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  #layoutError_content {
+    min-width: 0;
+    flex-grow: 1;
+  }
+
+  #layoutError_footer {
+    min-width: 0;
+  }
+}
+
+.img-error {
+  max-width: 20rem;
+}
+
+//
+// Nav
+//
+
+// Add styling for icons used within nav links
+.nav,
+.bws-sidenav-menu {
+  .nav-link .bws-nav-link-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+//
+// Topnav
+//
+
+.bws-top-nav-wrapper {
+  padding-left: 0;
+  height: $topnav-base-height;
+  z-index: $zindex-topnav;
+
+  .navbar-brand {
+    width: $sidenav-base-width;
+    padding-left: $navbar-padding-x;
+    padding-right: $navbar-padding-x;
+    margin: 0;
+  }
+
+  &.navbar-dark {
+    #sidebarToggle {
+      color: $topnav-dark-toggler-color;
+    }
+  }
+
+  &.navbar-light {
+    #sidebarToggle {
+      color: $topnav-light-toggler-color;
+    }
+  }
+}
+
+//
+// Sidenav
+//
+
+.bws-sidenav {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: nowrap;
+
+  .bws-sidenav-menu {
+    flex-grow: 1;
+
+    .nav {
+      flex-direction: column;
+      flex-wrap: nowrap;
+
+      .bws-sidenav-menu-heading {
+        padding: 1.75rem 1rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        position: relative;
+
+        .bws-nav-link-icon {
+          font-size: 0.9rem;
+        }
+
+        .bws-sidenav-collapse-arrow {
+          display: inline-block;
+          margin-left: auto;
+          transition: transform 0.15s ease;
+        }
+
+        &.collapsed {
+          .bws-sidenav-collapse-arrow {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+
+      .bws-sidenav-menu-nested {
+        margin-left: 1.5rem;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .bws-sidenav-footer {
+    padding: 0.75rem;
+    flex-shrink: 0;
+  }
+}
+//
+// Sidenav Dark
+//
+
+// Dark theme for sidenav
+// Append .bws-sidenav-dark to .bws-sidenav to use
+
+.bws-sidenav-dark {
+  background-color: $sidenav-dark-bg;
+  color: $sidenav-dark-color;
+
+  .bws-sidenav-menu {
+    .bws-sidenav-menu-heading {
+      color: $sidenav-dark-heading-color;
+    }
+
+    .nav-link {
+      color: $sidenav-dark-link-color;
+
+      .bws-nav-link-icon {
+        color: $sidenav-dark-icon-color;
+      }
+
+      .bws-sidenav-collapse-arrow {
+        color: $sidenav-dark-icon-color;
+      }
+
+      &:hover {
+        color: $sidenav-dark-link-active-color;
+      }
+
+      &.active {
+        color: $sidenav-dark-link-active-color;
+
+        .bws-nav-link-icon {
+          color: $sidenav-dark-link-active-color;
+        }
+      }
+    }
+  }
+
+  .bws-sidenav-footer {
+    background-color: $sidenav-dark-footer-bg;
+  }
+}
+
+
+// Sidenav Light
+// Append .bws-sidenav-light to .bws-sidenav to use
+
+.bws-sidenav-light {
+  background-color: $sidenav-light-bg;
+  color: $sidenav-light-color;
+
+  .bws-sidenav-menu {
+    .bws-sidenav-menu-heading {
+      color: $sidenav-light-heading-color;
+    }
+
+    .nav-link {
+      color: $sidenav-light-link-color;
+
+      .bws-nav-link-icon {
+        color: $sidenav-light-icon-color;
+      }
+
+      .bws-sidenav-collapse-arrow {
+        color: $sidenav-light-icon-color;
+      }
+
+      &:hover {
+        color: $sidenav-light-link-active-color;
+      }
+
+      &.active {
+        color: $sidenav-light-link-active-color;
+
+        .bws-nav-link-icon {
+          color: $sidenav-light-link-active-color;
+        }
+      }
+    }
+  }
+
+  .bws-sidenav-footer {
+    background-color: $sidenav-light-footer-bg;
+  }
+}
+
+// custom
+
+.icon {
+    font-family:'Bootstrap-icons';
+    margin-right: .3rem;
+    margin-bottom: .3rem;
+}
+
+.display_flex {
+    display: flex;
+}
+
+.table-dark>tr>th {
+    text-align: center;
+    vertical-align: top !important;
+
+}
+
+.table-dark>tr>th>a {
+    color: aliceblue;
+    text-decoration:none;
+}
+
+.btn-xs, .btn-group-xs > .btn {
+    --bs-btn-padding-y: 0.01rem;
+    --bs-btn-padding-x: 0.5rem;
+    --bs-btn-font-size: 0.7875rem;
+    --bs-btn-border-radius: 0.25rem;
+}
+
+
+
+.login-form-icon {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	top: -50px;
+	width: 95px;
+	height: 95px;
+	border-radius: 50%;
+	border: 1px solid rgb(201, 195, 195);
+	z-index: 9;
+	background: #ffffff;
+	padding: 20px;
+	>img {
+		height: 100%;
+		width: 100%;
+    border-radius: 50%;
+	}
+}

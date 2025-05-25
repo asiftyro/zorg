@@ -1,0 +1,34 @@
+"""___APP_DIR_NAME___/forms.py"""
+
+from django import forms
+from .models import ___MODEL_NAME___
+
+
+class ___MODEL_NAME___CreateForm(forms.ModelForm):
+    """___MODEL_NAME___ create form"""
+
+    class Meta:
+        """Meta for ___MODEL_NAME___CreateForm"""
+
+        model = ___MODEL_NAME___
+        fields = "__all__"
+        exclude = [
+            "deleted_at",
+            "restored_at",
+            "transaction_id",
+        ]
+
+
+class ___MODEL_NAME___UpdateForm(forms.ModelForm):
+    """___MODEL_NAME___ update form"""
+
+    class Meta:
+        """Meta for ___MODEL_NAME___UpdateForm"""
+
+        model = ___MODEL_NAME___
+        fields = "__all__"
+        exclude = [
+            "deleted_at",
+            "restored_at",
+            "transaction_id",
+        ]

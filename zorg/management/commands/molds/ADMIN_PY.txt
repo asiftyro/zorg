@@ -1,0 +1,7 @@
+"""___APP_DIR_NAME___/admin.py"""
+
+from django.contrib import admin
+from simple_history.admin import SimpleHistoryAdmin
+from .models import ___MODEL_NAME___
+
+admin.site.register(___MODEL_NAME___, SimpleHistoryAdmin)

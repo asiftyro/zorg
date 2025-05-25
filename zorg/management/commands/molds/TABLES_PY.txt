@@ -1,0 +1,37 @@
+"""___APP_DIR_NAME___/tables.py"""
+
+import django_tables2
+from . import models
+
+
+class ___MODEL_NAME___Table(django_tables2.Table):
+    """___MODEL_NAME___ table"""
+
+    actions = django_tables2.TemplateColumn(
+        template_code="""
+            {% autoescape off %}
+            <div class="btn-group btn-group btn-group-xs">
+            <a class='btn btn-xs btn-outline-primary' title='Detail' href="{% url '___APP_NAME___:detail' record.id %}"><i class='bi bi-tv'></i></a>
+            <a class='btn btn-xs btn-outline-info' title='Update' href="{% url '___APP_NAME___:update' record.id %}"><i class='bi bi-pencil-square'></i></a>
+            <a class='btn btn-xs btn-outline-danger' title='Delete' href="{% url '___APP_NAME___:delete' record.id %}"><i class='bi bi-trash'></i></a>
+            </div>
+            {% endautoescape %}
+            """,
+        orderable=False,
+        verbose_name="Actions",
+        attrs={
+            "td": {
+                "class": "text-center",
+            },
+        },
+    )
+
+
+    class Meta:
+        """Meta for ___MODEL_NAME___Table"""
+
+        model = models.___MODEL_NAME___
+        fields = ("name",)
+        per_page = 100
+        template_name = "django_tables2/bootstrap5-responsive.html"
+

@@ -1,0 +1,14 @@
+"""___APP_DIR_NAME___/models.py"""
+
+from django.db import models
+from simple_history.models import HistoricalRecords
+from django_softdelete.models import SoftDeleteModel
+from zorg.models import AuditModel
+
+class ___MODEL_NAME___(SoftDeleteModel, AuditModel):
+    """___MODEL_NAME___ model class"""
+
+    name = models.CharField(max_length=64, unique=True, db_index=True)
+
+    def __str__(self):
+        return f"{self.name}"

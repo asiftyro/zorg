@@ -1,0 +1,61 @@
+"""___APP_DIR_NAME___/views.py"""
+
+from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.urls import reverse_lazy
+from django_tables2.views import SingleTableMixin
+from django_filters.views import FilterView
+from .models import ___MODEL_NAME___
+from .forms import ___MODEL_NAME___CreateForm, ___MODEL_NAME___UpdateForm
+from .tables import ___MODEL_NAME___Table
+from .filters import ___MODEL_NAME___Filter
+
+
+class ___MODEL_NAME___ListView(PermissionRequiredMixin, SingleTableMixin, FilterView):
+    """___MODEL_NAME___ filter view."""
+
+    permission_required = ("___APP_LABEL___.view___PERMISSION_SUFFIX___",)
+    model = ___MODEL_NAME___
+    table_class = ___MODEL_NAME___Table
+    filterset_class = ___MODEL_NAME___Filter
+
+
+class ___MODEL_NAME___DetailView(PermissionRequiredMixin, DetailView):
+    """___MODEL_NAME___ detail view."""
+
+    permission_required = ("___APP_LABEL___.view___PERMISSION_SUFFIX___",)
+    model = ___MODEL_NAME___
+
+
+class ___MODEL_NAME___CreateView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
+    """___MODEL_NAME___ create view."""
+
+    permission_required = ("___APP_LABEL___.add___PERMISSION_SUFFIX___",)
+    model = ___MODEL_NAME___
+    form_class = ___MODEL_NAME___CreateForm
+    success_message = "___VERBOSE_NAME___ created."
+
+    def get_success_url(self):
+        return reverse_lazy("___APP_NAME___:detail", kwargs={"pk": self.object.pk})
+
+
+class ___MODEL_NAME___UpdateView(PermissionRequiredMixin, SuccessMessageMixin, UpdateView):
+    """___MODEL_NAME___ update View."""
+
+    permission_required = ("___APP_LABEL___.change___PERMISSION_SUFFIX___",)
+    model = ___MODEL_NAME___
+    form_class = ___MODEL_NAME___UpdateForm
+    success_message = "___VERBOSE_NAME___ updated."
+
+    def get_success_url(self):
+        return reverse_lazy("___APP_NAME___:detail", kwargs={"pk": self.object.pk})
+
+
+class ___MODEL_NAME___DeleteView(PermissionRequiredMixin, SuccessMessageMixin, DeleteView):
+    """___MODEL_NAME___ delete view."""
+
+    permission_required = ("___APP_LABEL___.delete___PERMISSION_SUFFIX___",)
+    model = ___MODEL_NAME___
+    success_message = "___VERBOSE_NAME___ deleted."
+    success_url = reverse_lazy("___APP_NAME___:list")

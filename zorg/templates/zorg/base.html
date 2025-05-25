@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "zorg/header.html" %}
+    <title>
+      {{ APP_SHORT_NAME }}
+      {% block browser_title %}
+      {% endblock browser_title %}
+    </title>
+    {% block page_style %}
+    {% endblock page_style %}
+  </head>
+  <body>
+    <div class="bws-main-wrapper">
+      {% include "zorg/top_nav.html" %}
+      {% include "zorg/side_nav.html" %}
+      <div class="bws-content-wrapper">
+        <main>
+          <div class="container-fluid px-4">
+            {% block page_header %}
+            {% endblock page_header %}
+            {% include "zorg/flash_alert.html" %}
+            {% block page_content %}
+            {% endblock page_content %}
+          </div>
+        </main>
+        {% include "zorg/footer.html" %}
+      </div>
+    </div>
+    <script src='{% static "js/bootstrap.bundle.min.js" %}'> </script>
+    <script src='{% static "js/use-bootstrap-select.min.js" %}'></script>
+    <script src='{% static "js/script.js" %}'></script>
+    {% block page_script %}
+    {% endblock page_script %}
+  </body>
+</html>

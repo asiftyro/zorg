@@ -1,0 +1,18 @@
+"""___APP_DIR_NAME___/filters.py"""
+
+import django_filters
+from . import models
+
+
+class ___MODEL_NAME___Filter(django_filters.FilterSet):
+    """___MODEL_NAME___ filter"""
+
+    name = django_filters.CharFilter(lookup_expr="icontains", label="Name")
+
+    class Meta:
+        """Meta for ___MODEL_NAME___Filter"""
+
+        model = models.___MODEL_NAME___
+        fields = [
+            "name",
+        ]

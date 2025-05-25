@@ -1,0 +1,12 @@
+{% load custom_tags %}
+{% if perms.___APP_LABEL___ %}
+{% side_nav_heading heading="___VERBOSE_NAME___" %}
+{% side_nav_drop_down id="___MENU_ID___" root_id="side-nav-root" drop_down_label="___VERBOSE_NAME___" drop_down_icon="record-circle" %}
+{% if perms.___APP_LABEL___.view___PERMISSION_SUFFIX___ %}
+{% side_nav_link url="___APP_NAME___:list" icon="filter-square" label="List ___VERBOSE_NAME___" %}
+{% endif %}
+{% if perms.___APP_LABEL___.add___PERMISSION_SUFFIX___ %}
+{% side_nav_link url="___APP_NAME___:create" icon="plus-square" label="Create ___VERBOSE_NAME___" %}
+{% endif %}
+{% end_side_nav_drop_down %}
+{% endif %}
